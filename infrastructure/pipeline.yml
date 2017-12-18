@@ -75,11 +75,6 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: '*'
-              - Sid: CodeCommitPullPolicy
-                Effect: Allow
-                Action:
-                  - codecommit:GitPull
-                Resource: '*'
               - Sid: S3GetObjectPolicy
                 Effect: Allow
                 Action:
