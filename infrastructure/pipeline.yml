@@ -2,6 +2,9 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: CD pipeline for my Lambda project
 
 Parameters:
+  SiteName:
+    Type: String
+    Default: protag-portal.com
   ProjectName:
     Type: String
     Default: protagonist
