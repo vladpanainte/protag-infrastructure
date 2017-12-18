@@ -30,6 +30,23 @@ Parameters:
     SourceBranchName:
       Type: String
       Default: master
+    GitHubRepoName:
+      Type: String
+      Default: protag-infrastructure
+      Description: The GitHub repo name
+    GitHubRepoBranch:
+      Type: String
+      Description: The GitHub repo branch code pipelines should watch for changes on
+      Default: master
+    GitHubUser:
+      Type: String
+      Default: vladpanainte
+      Description: GitHub UserName. This username must have access to the GitHubToken.
+    GitHubToken:
+      NoEcho: true
+      Type: String
+      Default: 5d598f7c872edad7c9fac5ee8f16eacf5a836682
+      Description: "Secret. OAuthToken with access to Repo. Long string of characters and digits. Go to https://github.com/settings/tokens"
 
 Resources:
   CloudFormationRole:
@@ -165,19 +182,21 @@ Resources:
     Properties:
       RoleArn: !GetAtt CodePipelineRole.Arn
       Stages:
-      - Name: Source
-        Actions:
-        - Name: Source
+      - Name: source
+          InputArtifacts: []
           ActionTypeId:
+            Version: "1"
             Category: Source
-            Owner: AWS
-            Provider: CodeCommit
-            Version: 1
-          Configuration:
-            RepositoryName: !Ref SourceRepositoryName
-            BranchName: !Ref SourceBranchName
+            Owner: ThirdParty
+            Provider: GitHub
           OutputArtifacts:
-            - Name: SourceOutput
+          - Name: !Sub "${SiteName}-SourceArtifact"
+          Configuration:
+            Repo: !Ref GitHubRepoName
+            Branch: !Ref GitHubRepoBranch
+            OAuthToken: !Ref GitHubToken
+            Owner: !Ref GitHubUser
+          RunOrder: 1
       - Name: Deploy
         Actions:
         - Name: Artifact
