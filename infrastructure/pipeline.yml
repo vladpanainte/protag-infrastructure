@@ -8,12 +8,6 @@ Parameters:
   CapitalizedProjectName:
     Type: String
     Default: Protagonist
-  SourceRepositoryName:
-    Type: String
-    Default: protagonist-lambda
-  SourceBranchName:
-    Type: String
-    Default: master
   SiteBucketName:
     Type: String
     Default: protagonist-static-site

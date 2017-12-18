@@ -24,12 +24,6 @@ Parameters:
       Type: String
       Default: "aws/codebuild/python:3.5.2"
       Description: The build image to use for building the app
-    SourceRepositoryName:
-      Type: String
-      Default: protagonist-lambda
-    SourceBranchName:
-      Type: String
-      Default: master
     GitHubRepoName:
       Type: String
       Default: protag-infrastructure
