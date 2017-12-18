@@ -2,6 +2,9 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Deploy a static site
 
 Parameters:
+    SiteName:
+      Type: String
+      Default: protag-portal.com
     SiteBucketName:
       Type: String
       Default: protagonist-static-site
